@@ -1,0 +1,28 @@
+--NAME: IVANNOVI JORDAN
+--SID: 862153784
+--EMAIL: ijord001@ucr.edu
+
+DROP SEQUENCE IF EXISTS msg_id_seq CASCADE;
+
+
+CREATE SEQUENCE msg_id_seq START WITH 27813;
+
+CREATE OR REPLACE FUNCTION msgid_next()
+RETURNS "trigger" AS
+$BODY$
+BEGIN
+
+NEW.msgId:=nextval('msg_id_seq');
+RETURN NEW;
+
+END;
+$BODY$
+LANGUAGE 'plpgsql' VOLATILE;
+
+CREATE TRIGGER trigger_msg_id 
+BEFORE INSERT
+ON MESSAGE 
+FOR EACH ROW 
+EXECUTE PROCEDURE msgid_next();
+
+

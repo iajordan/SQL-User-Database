@@ -1,0 +1,6 @@
+--NAME: IVANNOVI JORDAN
+--SID: 862153784
+--EMAIL: ijord001@ucr.edu
+
+CREATE INDEX connection_user_id_index
+ON CONNECTION_USR USING BTREE(userId);
